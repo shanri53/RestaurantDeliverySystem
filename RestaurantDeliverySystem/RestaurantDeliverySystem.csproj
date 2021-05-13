@@ -1,0 +1,284 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6C540775-9649-4589-9CEA-14C26C1B0011}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>RestaurantDeliverySystem</RootNamespace>
+    <AssemblyName>RestaurantDeliverySystem</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BK_form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BK_form.Designer.cs">
+      <DependentUpon>BK_form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OrderList_form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrderList_form.Designer.cs">
+      <DependentUpon>OrderList_form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Order_form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Order_form.Designer.cs">
+      <DependentUpon>Order_form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KFC_form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KFC_form.Designer.cs">
+      <DependentUpon>KFC_form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login_form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login_form.Designer.cs">
+      <DependentUpon>Login_form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="menu_tbl.cs">
+      <DependentUpon>Restaurant.tt</DependentUpon>
+    </Compile>
+    <Compile Include="order_list.cs">
+      <DependentUpon>Restaurant.tt</DependentUpon>
+    </Compile>
+    <Compile Include="order_tbl.cs">
+      <DependentUpon>Restaurant.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pizzaHut_form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="pizzaHut_form.Designer.cs">
+      <DependentUpon>pizzaHut_form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Register_form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Register_form.Designer.cs">
+      <DependentUpon>Register_form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Restaurant.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Restaurant.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Restaurant.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Restaurant.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Restaurant.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Restaurant.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="restaurant_delivery_systemDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>restaurant_delivery_systemDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Restaurant_form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Restaurant_form.Designer.cs">
+      <DependentUpon>Restaurant_form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="restaurant_delivery_systemDataSet11.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>restaurant_delivery_systemDataSet11.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="restaurant_tbl.cs">
+      <DependentUpon>Restaurant.tt</DependentUpon>
+    </Compile>
+    <Compile Include="user_tbl.cs">
+      <DependentUpon>Restaurant.tt</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="BK_form.resx">
+      <DependentUpon>BK_form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrderList_form.resx">
+      <DependentUpon>OrderList_form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Order_form.resx">
+      <DependentUpon>Order_form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KFC_form.resx">
+      <DependentUpon>KFC_form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login_form.resx">
+      <DependentUpon>Login_form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pizzaHut_form.resx">
+      <DependentUpon>pizzaHut_form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Register_form.resx">
+      <DependentUpon>Register_form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Restaurant_form.resx">
+      <DependentUpon>Restaurant_form.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EntityDeploy Include="Restaurant.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Restaurant.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Restaurant.edmx.diagram">
+      <DependentUpon>Restaurant.edmx</DependentUpon>
+    </None>
+    <None Include="restaurant_delivery_systemDataSet.xsc">
+      <DependentUpon>restaurant_delivery_systemDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="restaurant_delivery_systemDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>restaurant_delivery_systemDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="restaurant_delivery_systemDataSet.xss">
+      <DependentUpon>restaurant_delivery_systemDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="restaurant_delivery_systemDataSet11.xsc">
+      <DependentUpon>restaurant_delivery_systemDataSet11.xsd</DependentUpon>
+    </None>
+    <None Include="restaurant_delivery_systemDataSet11.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>restaurant_delivery_systemDataSet11.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="restaurant_delivery_systemDataSet11.xss">
+      <DependentUpon>restaurant_delivery_systemDataSet11.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\301-3019331_history-comments-order-history-icon-png.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\back.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\backmin.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bigdeal.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\burgerking.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\famousbowl.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\kfc.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\log_out_transparent_min.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\log_out_transparent-png.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pizzahut.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\popeyes.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zinger.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\whopper.png" />
+    <None Include="Resources\nuggets.png" />
+    <None Include="Resources\bk_chickenSandwich.png" />
+    <None Include="Resources\pizza.png" />
+    <None Include="Resources\bread _sticks.png" />
+    <None Include="Resources\wings.png" />
+    <Content Include="Restaurant.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Restaurant.edmx</DependentUpon>
+      <LastGenOutput>Restaurant.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Restaurant.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Restaurant.edmx</DependentUpon>
+      <LastGenOutput>Restaurant.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

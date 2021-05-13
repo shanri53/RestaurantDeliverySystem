@@ -1,0 +1,362 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="restaurant_delivery_systemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="menu_tbl">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="price" Type="varchar" MaxLength="50" />
+          <Property Name="restaurant_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="order_list">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="order_id" Type="int" Nullable="false" />
+          <Property Name="item" Type="int" Nullable="false" />
+          <Property Name="quantity" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="order_tbl">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="order_list_id" Type="int" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="restaurant_id" Type="int" Nullable="false" />
+          <Property Name="date" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="restaurant_tbl">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="user_tbl">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="lname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="address" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_menu">
+          <End Role="restaurant_tbl" Type="Self.restaurant_tbl" Multiplicity="1" />
+          <End Role="menu_tbl" Type="Self.menu_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="restaurant_tbl">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="menu_tbl">
+              <PropertyRef Name="restaurant_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_order_tbl_order_list">
+          <End Role="order_list" Type="Self.order_list" Multiplicity="1" />
+          <End Role="order_tbl" Type="Self.order_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="order_list">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="order_tbl">
+              <PropertyRef Name="order_list_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_order_tbl_order_tbl">
+          <End Role="order_tbl" Type="Self.order_tbl" Multiplicity="1" />
+          <End Role="order_tbl1" Type="Self.order_tbl" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="order_tbl">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="order_tbl1">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_order_tbl_restaurant_tbl">
+          <End Role="restaurant_tbl" Type="Self.restaurant_tbl" Multiplicity="1" />
+          <End Role="order_tbl" Type="Self.order_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="restaurant_tbl">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="order_tbl">
+              <PropertyRef Name="restaurant_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_order_tbl_user_tbl">
+          <End Role="user_tbl" Type="Self.user_tbl" Multiplicity="1" />
+          <End Role="order_tbl" Type="Self.order_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user_tbl">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="order_tbl">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="restaurant_delivery_systemModelStoreContainer">
+          <EntitySet Name="menu_tbl" EntityType="Self.menu_tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="order_list" EntityType="Self.order_list" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="order_tbl" EntityType="Self.order_tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="restaurant_tbl" EntityType="Self.restaurant_tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user_tbl" EntityType="Self.user_tbl" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_menu" Association="Self.FK_menu">
+            <End Role="restaurant_tbl" EntitySet="restaurant_tbl" />
+            <End Role="menu_tbl" EntitySet="menu_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_order_tbl_order_list" Association="Self.FK_order_tbl_order_list">
+            <End Role="order_list" EntitySet="order_list" />
+            <End Role="order_tbl" EntitySet="order_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_order_tbl_order_tbl" Association="Self.FK_order_tbl_order_tbl">
+            <End Role="order_tbl" EntitySet="order_tbl" />
+            <End Role="order_tbl1" EntitySet="order_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_order_tbl_restaurant_tbl" Association="Self.FK_order_tbl_restaurant_tbl">
+            <End Role="restaurant_tbl" EntitySet="restaurant_tbl" />
+            <End Role="order_tbl" EntitySet="order_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_order_tbl_user_tbl" Association="Self.FK_order_tbl_user_tbl">
+            <End Role="user_tbl" EntitySet="user_tbl" />
+            <End Role="order_tbl" EntitySet="order_tbl" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="restaurant_delivery_systemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="menu_tbl">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="price" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="restaurant_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="restaurant_tbl" Relationship="Self.FK_menu" FromRole="menu_tbl" ToRole="restaurant_tbl" />
+        </EntityType>
+        <EntityType Name="order_list">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="order_id" Type="Int32" Nullable="false" />
+          <Property Name="item" Type="Int32" Nullable="false" />
+          <Property Name="quantity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="order_tbl" Relationship="Self.FK_order_tbl_order_list" FromRole="order_list" ToRole="order_tbl" />
+        </EntityType>
+        <EntityType Name="order_tbl">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="order_list_id" Type="Int32" Nullable="false" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="restaurant_id" Type="Int32" Nullable="false" />
+          <Property Name="date" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="order_list" Relationship="Self.FK_order_tbl_order_list" FromRole="order_tbl" ToRole="order_list" />
+          <NavigationProperty Name="restaurant_tbl" Relationship="Self.FK_order_tbl_restaurant_tbl" FromRole="order_tbl" ToRole="restaurant_tbl" />
+          <NavigationProperty Name="user_tbl" Relationship="Self.FK_order_tbl_user_tbl" FromRole="order_tbl" ToRole="user_tbl" />
+        </EntityType>
+        <EntityType Name="restaurant_tbl">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="menu_tbl" Relationship="Self.FK_menu" FromRole="restaurant_tbl" ToRole="menu_tbl" />
+          <NavigationProperty Name="order_tbl" Relationship="Self.FK_order_tbl_restaurant_tbl" FromRole="restaurant_tbl" ToRole="order_tbl" />
+        </EntityType>
+        <EntityType Name="user_tbl">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="lname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="order_tbl" Relationship="Self.FK_order_tbl_user_tbl" FromRole="user_tbl" ToRole="order_tbl" />
+        </EntityType>
+        <Association Name="FK_menu">
+          <End Role="restaurant_tbl" Type="Self.restaurant_tbl" Multiplicity="1" />
+          <End Role="menu_tbl" Type="Self.menu_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="restaurant_tbl">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="menu_tbl">
+              <PropertyRef Name="restaurant_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_order_tbl_order_list">
+          <End Role="order_list" Type="Self.order_list" Multiplicity="1" />
+          <End Role="order_tbl" Type="Self.order_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="order_list">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="order_tbl">
+              <PropertyRef Name="order_list_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_order_tbl_order_tbl">
+          <End Role="order_tbl" Type="Self.order_tbl" Multiplicity="1" />
+          <End Role="order_tbl1" Type="Self.order_tbl" Multiplicity="0..1" />
+        </Association>
+        <Association Name="FK_order_tbl_restaurant_tbl">
+          <End Role="restaurant_tbl" Type="Self.restaurant_tbl" Multiplicity="1" />
+          <End Role="order_tbl" Type="Self.order_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="restaurant_tbl">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="order_tbl">
+              <PropertyRef Name="restaurant_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_order_tbl_user_tbl">
+          <End Role="user_tbl" Type="Self.user_tbl" Multiplicity="1" />
+          <End Role="order_tbl" Type="Self.order_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user_tbl">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="order_tbl">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="restaurant_delivery_systemEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="menu_tbl" EntityType="Self.menu_tbl" />
+          <EntitySet Name="order_list" EntityType="Self.order_list" />
+          <EntitySet Name="order_tbl" EntityType="Self.order_tbl" />
+          <EntitySet Name="restaurant_tbl" EntityType="Self.restaurant_tbl" />
+          <EntitySet Name="user_tbl" EntityType="Self.user_tbl" />
+          <AssociationSet Name="FK_menu" Association="Self.FK_menu">
+            <End Role="restaurant_tbl" EntitySet="restaurant_tbl" />
+            <End Role="menu_tbl" EntitySet="menu_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_order_tbl_order_list" Association="Self.FK_order_tbl_order_list">
+            <End Role="order_list" EntitySet="order_list" />
+            <End Role="order_tbl" EntitySet="order_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_order_tbl_order_tbl" Association="Self.FK_order_tbl_order_tbl">
+            <End Role="order_tbl" EntitySet="order_tbl" />
+            <End Role="order_tbl1" EntitySet="order_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_order_tbl_restaurant_tbl" Association="Self.FK_order_tbl_restaurant_tbl">
+            <End Role="restaurant_tbl" EntitySet="restaurant_tbl" />
+            <End Role="order_tbl" EntitySet="order_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_order_tbl_user_tbl" Association="Self.FK_order_tbl_user_tbl">
+            <End Role="user_tbl" EntitySet="user_tbl" />
+            <End Role="order_tbl" EntitySet="order_tbl" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="restaurant_delivery_systemModelStoreContainer" CdmEntityContainer="restaurant_delivery_systemEntities1">
+          <EntitySetMapping Name="menu_tbl">
+            <EntityTypeMapping TypeName="restaurant_delivery_systemModel.menu_tbl">
+              <MappingFragment StoreEntitySet="menu_tbl">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="restaurant_id" ColumnName="restaurant_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="order_list">
+            <EntityTypeMapping TypeName="restaurant_delivery_systemModel.order_list">
+              <MappingFragment StoreEntitySet="order_list">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="item" ColumnName="item" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="price" ColumnName="price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="order_tbl">
+            <EntityTypeMapping TypeName="restaurant_delivery_systemModel.order_tbl">
+              <MappingFragment StoreEntitySet="order_tbl">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="order_list_id" ColumnName="order_list_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="restaurant_id" ColumnName="restaurant_id" />
+                <ScalarProperty Name="date" ColumnName="date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="restaurant_tbl">
+            <EntityTypeMapping TypeName="restaurant_delivery_systemModel.restaurant_tbl">
+              <MappingFragment StoreEntitySet="restaurant_tbl">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user_tbl">
+            <EntityTypeMapping TypeName="restaurant_delivery_systemModel.user_tbl">
+              <MappingFragment StoreEntitySet="user_tbl">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="fname" ColumnName="fname" />
+                <ScalarProperty Name="lname" ColumnName="lname" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="address" ColumnName="address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
